@@ -1,0 +1,32 @@
+.landing-page {
+  text-align: center;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.cool-button {
+  background-color: rgb(121, 0, 255); /* Main button color */
+  color: white;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  position: relative;
+  outline: none;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for background color and slight transform */
+}
+
+.cool-button:hover, .cool-button:focus {
+  background-color: rgba(121, 0, 255, 0.8); /* Slightly lighter on hover/focus */
+  transform: scale(1.05); /* Slightly larger on hover/focus */
+  outline: none;
+}
