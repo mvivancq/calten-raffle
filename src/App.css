@@ -30,3 +30,10 @@
   transform: scale(1.05); /* Slightly larger on hover/focus */
   outline: none;
 }
+
+.container{
+  @media only screen and (min-width: 1000px){
+    margin-left: 25%;
+    margin-right: 25%;
+  }
+}
