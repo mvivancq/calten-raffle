@@ -16,9 +16,9 @@ export default function CaltenPayment(props:  {totalAmount: number}) {
 
     const queryParams = new URLSearchParams({
       reference: "2",
-      concept: encodeURIComponent("Compra boletos"),
+      concept: "Compra boletos",
       amount: totalAmount.toString(),
-      beneficiaryName: encodeURIComponent("AGIT SRL DE CV"),
+      beneficiaryName: "AGIT SRL DE CV",
       beneficiaryBank: "40997",
       beneficiaryAccountType: "40",
       beneficiaryAccount: "997000000000144354",
