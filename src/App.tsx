@@ -8,7 +8,7 @@ function App() {
   const [name, setName] = useState(''); // Default to 1 ticket
   const [email, setEmail] = useState(''); 
   const [reference, setReference] = useState(1);
-  const [paid, setPaid] = useState(false); // Default to 1 ticket
+  const [paid, setPaid] = useState(0); // Default to 1 ticket
 
 
   const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -55,12 +55,7 @@ function App() {
   }
 
   const getPayingUi = () => {
-    if(paid){
-      return(
-        <h1>Gracias por tu pago</h1>
-      )
-    }
-    else{
+    if(paid === 0){
       return(
         <CaltenPayment 
           totalAmount={ticketCount*ticketPrice} 
@@ -68,6 +63,24 @@ function App() {
           concept={'Compra de boletos de '+name+email}
           onClose={getResultOnClose} 
         />
+      )
+    }
+    else if(paid === 1){
+      return(
+        <h1>Gracias por tu pago</h1>
+      )
+    }
+    else{
+      return(
+        <>
+          <h1>El pago no se completo con exito, vuelve a intentar</h1>
+          <CaltenPayment 
+            totalAmount={ticketCount*ticketPrice} 
+            reference={getReferenceOnSubmit} 
+            concept={'Compra de boletos de '+name+email}
+            onClose={getResultOnClose} 
+          />
+        </>
       )
     }
   }
