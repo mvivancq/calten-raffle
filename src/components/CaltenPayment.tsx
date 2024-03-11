@@ -1,7 +1,7 @@
 import { useState } from "react";
 import NewWindow from 'react-new-window'
 
-export default function CaltenPayment(props:  {totalAmount: number}) {
+export default function CaltenPayment(props:  {totalAmount: number, reference: number, concept: string}) {
   const [paymentUrl, setPaymentUrl] = useState('https://checkout.calten.com.mx/checkout');
   const [paying, setPaying] = useState(false);
 
@@ -15,8 +15,8 @@ export default function CaltenPayment(props:  {totalAmount: number}) {
     const totalAmount = props.totalAmount;
 
     const queryParams = new URLSearchParams({
-      reference: "2",
-      concept: "Compra boletos",
+      reference: props.reference.toString(),
+      concept: props.concept,
       amount: totalAmount.toString(),
       beneficiaryName: "AGIT SRL DE CV",
       beneficiaryBank: "40997",
