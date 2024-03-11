@@ -31,6 +31,7 @@ export default function CaltenPayment(props:  {
       beneficiaryAccountType: "40",
       beneficiaryAccount: "997000000000144354",
       commerceCertification: "00000100000100015341",
+      callback: "https://calten-raffle-back.vercel.app/api/putPaymentResult",
     });
 
     const fullUrl = `${baseUrl}?${queryParams.toString()}`;
