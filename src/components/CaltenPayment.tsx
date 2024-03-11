@@ -1,21 +1,29 @@
 import { useState } from "react";
 import NewWindow from 'react-new-window'
 
-export default function CaltenPayment(props:  {totalAmount: number, reference: number, concept: string}) {
+export default function CaltenPayment(props:  {
+  totalAmount: number, 
+  reference: () => Promise<number>, 
+  concept: string,
+  onClose: () => Promise<void>,
+}) 
+  {
   const [paymentUrl, setPaymentUrl] = useState('https://checkout.calten.com.mx/checkout');
   const [paying, setPaying] = useState(false);
 
   const handlePopUpClose = () => {
     console.log('cerrado');
-    setPaying(false);
+    props.onClose();
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     const baseUrl = "https://checkout.calten.com.mx/checkout";
     const totalAmount = props.totalAmount;
+    const reference = await props.reference();
+    console.log(reference)
 
     const queryParams = new URLSearchParams({
-      reference: props.reference.toString(),
+      reference: reference.toString(),
       concept: props.concept,
       amount: totalAmount.toString(),
       beneficiaryName: "AGIT SRL DE CV",
