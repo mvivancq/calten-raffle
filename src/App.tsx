@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import CaltenPayment from "./components/CaltenPayment";
+import apiRaffle from "./api/raffleapi";
 
 function App() {
   const [ticketCount, setTicketCount] = useState(1); // Default to 1 ticket
@@ -24,34 +25,21 @@ function App() {
     const formedData = {
       "name": name,
       "email": email,
-      "numberOfTickets": ticketCount
+      "numberOfTickets": ticketCount,
+      "amount": ticketCount*ticketPrice,
     }
-    const backendHost = 'http://127.0.0.1:3001';
-    const response = await fetch(`${backendHost}/api/postPaymentReference`, {
-      method: "POST",
-      headers: {
-          //'Authorization': this.props.authHeader(), 
-          'Content-type': 'application/json; charset=UTF-8',
-      },
-      body: JSON.stringify(formedData),
-    });
-    const responsejson = await response.json();
-    setReference(responsejson.reference);
-    return responsejson.reference;
+    const resultDetails = await apiRaffle.requestPaymentReference(formedData);
+    setReference(resultDetails.reference);
+    return resultDetails.reference;
   }
 
   const getResultOnClose = async () => {
-    const backendHost = 'http://127.0.0.1:3001';
-    const response = await fetch(`${backendHost}/api/getPaymentResult?reference=${reference}`, {
-      method: "get",
-      headers: {
-          //'Authorization': this.props.authHeader(), 
-          'Content-type': 'application/json; charset=UTF-8',
-      },
-    });
-    const responsejson = await response.json();
-    setPaid(responsejson.paid);
-    console.log(responsejson.paid)
+    const formedData = {
+      "reference": reference,
+    }
+    const resultDetails = await apiRaffle.getPaymentResult(formedData);
+    setPaid(resultDetails.paid);
+    console.log(resultDetails.paid);
   }
 
   const getPayingUi = () => {
