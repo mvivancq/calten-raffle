@@ -4,7 +4,6 @@ interface RequestPaymentReferenceParams {
   name: string,
   email: string,
   numberOfTickets: number,
-  amount: number,
 }
 
 interface GetPaymentResultParams {
@@ -25,7 +24,6 @@ class APIRaffle {
     try {
       // Validate if all query params are present, if not throw an error
       const { data } = await this.axiosInstance.post("/postPaymentReference", {
-        amount: payload.amount,
         name: payload.name,
         email: payload.email,
         numberOfTickets: payload.numberOfTickets,
@@ -33,9 +31,9 @@ class APIRaffle {
           'Access-Control-Allow-Origin': true,
         },
       });
-      console.log("FUNNNKJH")
+      console.log("GET PAYMENT ")
       console.log(data)
-      return data;
+      return data.paymentId;
     } catch (error) {
       console.error(error);
       throw error;
