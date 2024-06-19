@@ -5,10 +5,12 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import CaltenLinks from "../components/CaltenLinks";
 import caltenLogo from "../assets/images/logo/calten.png";
+import { useNavigate } from 'react-router-dom';
 
 function RafflePage() {
   const [ticketCount, setTicketCount] = useState(1); // Default to 1 ticket
   const ticketPrice = 50; // Assuming the price is always $50 MXN
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -36,7 +38,8 @@ function RafflePage() {
       "numberOfTickets": ticketCount,
     }
     const resultDetails = await apiRaffle.requestPaymentReference(formedData);
-    console.log(resultDetails)
+    console.log(resultDetails);
+    navigate('/success')
     window.location.href = `https://calten-frontend.vercel.app/checkout/${resultDetails}`
   }
 

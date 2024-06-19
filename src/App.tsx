@@ -8,12 +8,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: (
-      <RafflePage />
-    ),
-  },
-  {
     path: "/success",
     element: (
       <SuccessPage />
@@ -25,6 +19,12 @@ const router = createBrowserRouter([
       <FailurePage />
     ),
   },
+  {
+    path: "/",
+    element: (
+      <RafflePage />
+    ),
+  }
 ]);
 
 const theme = createTheme({
