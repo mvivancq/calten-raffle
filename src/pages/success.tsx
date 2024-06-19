@@ -9,6 +9,7 @@ import {
   ListItemText 
 } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import caltenLogo from "../assets/images/logo/calten.png";
 
 function SuccessPage() {
 
@@ -23,7 +24,7 @@ function SuccessPage() {
          Gracias por tu participación
         </Typography>
         <div className="container">
-          <img style={{ width: "80%" }} src='../public/calten.png' alt="Logo" />
+          <img style={{ width: "80%" }} src={caltenLogo} alt="Logo" />
         </div>
         <div className="container">
         <Typography variant="h5" style={{ letterSpacing: "1px" }}>

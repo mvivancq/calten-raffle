@@ -4,6 +4,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import CaltenLinks from "../components/CaltenLinks";
+import caltenLogo from "../assets/images/logo/calten.png";
 
 function RafflePage() {
   const [ticketCount, setTicketCount] = useState(1); // Default to 1 ticket
@@ -50,7 +51,7 @@ function RafflePage() {
           Ayudanos a mejorar nuestra experiencia de pago
         </Typography>
         <div className="container">
-          <img style={{ width: "80%" }} src='../public/calten.png' alt="Logo" />
+          <img style={{ width: "80%" }} src={caltenLogo} alt="Logo" />
         </div>
         <p>
           Costo del boleto: <strong>${ticketPrice} MXN</strong> - Quiero comprar

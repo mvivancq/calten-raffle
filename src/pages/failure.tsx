@@ -9,6 +9,7 @@ import {
   ListItemText 
 } from "@mui/material";
 import ErrorIcon from '@mui/icons-material/Error';
+import caltenLogo from "../assets/images/logo/calten.png";
 
 function FailurePage() {
 
@@ -23,7 +24,7 @@ function FailurePage() {
           Tu pago no pudo ser procesado
         </Typography>
         <div className="container">
-          <img style={{ width: "80%" }} src='../public/calten.png' alt="Logo" />
+          <img style={{ width: "80%" }} src={caltenLogo} alt="Logo" />
         </div>
         <div className="container">
         <Typography variant="h5" style={{ letterSpacing: "1px" }}>
