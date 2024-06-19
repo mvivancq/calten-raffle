@@ -39,8 +39,7 @@ function RafflePage() {
     }
     const resultDetails = await apiRaffle.requestPaymentReference(formedData);
     console.log(resultDetails);
-    navigate(`https://calten-frontend.vercel.app/checkout/${resultDetails}`)
-    //window.location.href = `https://calten-frontend.vercel.app/checkout/${resultDetails}`
+    window.location.href = `https://calten-frontend.vercel.app/checkout/${resultDetails}`
   }
 
   const plural = ticketCount > 1
