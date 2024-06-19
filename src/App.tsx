@@ -29,7 +29,7 @@ const router = createBrowserRouter([
 
 const theme = createTheme({
   typography: {
-    fontFamily: 'Work Sans'
+    fontFamily: 'Arial'
   },
   palette: {
     primary: {

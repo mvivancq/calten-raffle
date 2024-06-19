@@ -1,23 +1,34 @@
 import { useState } from "react";
 import apiRaffle from "../api/raffleapi";
+import { Button, TextField, Typography } from "@mui/material";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+import CaltenLinks from "../components/CaltenLinks";
 
 function RafflePage() {
   const [ticketCount, setTicketCount] = useState(1); // Default to 1 ticket
   const ticketPrice = 50; // Assuming the price is always $50 MXN
-  const [name, setName] = useState(''); // Default to 1 ticket
-  const [email, setEmail] = useState(''); 
 
-  
-  const handleNameChange = (e: React.FormEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
-    setName(e.currentTarget.value);
-  };
-  const handleEmailChange = (e: React.FormEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value);
-    setEmail(e.currentTarget.value);
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        //.matches(/^\d{10}$/, 'El número de teléfono debe tener exactamente 10 dígitos')
+        .required('El nombre es obligatorio'),
+      email: Yup.string()
+        //.matches(/^\d{10}$/, 'El número de teléfono debe tener exactamente 10 dígitos')
+        .required('El email es obligatorio'),
+      }),
+    onSubmit: (values) => {
+      console.log(values);
+      handleButtonClick(values.name, values.email);
+    },
+  });
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = async (name: string, email: string) => {
     const formedData = {
       "name": name,
       "email": email,
@@ -32,13 +43,14 @@ function RafflePage() {
   return (
     <>
       <div className="landing-page">
-        <h1>Participa en la rifa de Calten</h1>
-        <h3 style={{ letterSpacing: "1px" }}>
+        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
+          Participa en la rifa de Calten
+        </Typography>
+        <Typography variant="h5" style={{ letterSpacing: "1px" }}>
           Ayudanos a mejorar nuestra experiencia de pago
-        </h3>
-        <br />
+        </Typography>
         <div className="container">
-          <img style={{ width: "100%" }} src='../public/calten.png' alt="Logo" />
+          <img style={{ width: "80%" }} src='../public/calten.png' alt="Logo" />
         </div>
         <p>
           Costo del boleto: <strong>${ticketPrice} MXN</strong> - Quiero comprar
@@ -55,16 +67,47 @@ function RafflePage() {
           </select>
           boleto{plural ? 's' : ''}
           <br></br>
-          <label style={{ width: "100%" }}>
-            Nombre: <input name="myInput" style={{ width: "100%" }} onChange={handleNameChange}/>
-          </label>
-          <label style={{ width: "100%" }}>
-            email: <input name="myInput" style={{ width: "100%" }} onChange={handleEmailChange}/>
-          </label>
         </p>
-      <button className="cool-button" onClick={handleButtonClick}>
-            Paga con Calten
-      </button>
+        <form onSubmit={formik.handleSubmit} style={{ marginLeft: "10px", marginRight: "10px" }}>
+        <TextField
+          id="name"
+          name="name"
+          fullWidth
+          margin="dense"
+          label="Nombre"
+          variant="outlined"
+          type="name"
+          sx={{ mt: 3 }}
+          value={formik.values.name}
+          onChange={formik.handleChange}
+          error={formik.touched.name && Boolean(formik.errors.name)} // Add this line
+          helperText={formik.touched.name && formik.errors.name} // Add this line
+        />
+        <TextField
+          id="email"
+          name="email"
+          fullWidth
+          margin="dense"
+          label="Email"
+          variant="outlined"
+          type="email"
+          sx={{ mb: 1}}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email && Boolean(formik.errors.email)} // Add this line
+          helperText={formik.touched.email && formik.errors.email} // Add this line
+        />
+        <Button
+          sx={{ mt: 3, mb: 3, textTransform: "none", fontSize: "18px" }}
+          variant="contained"
+          fullWidth
+          type="submit"
+          size="large"
+        >
+          Paga con Calten
+        </Button>
+        </form>
+      <CaltenLinks />
       </div>
     </>
   );
