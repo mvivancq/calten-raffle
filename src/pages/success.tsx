@@ -10,25 +10,29 @@ import {
 } from "@mui/material";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import caltenLogo from "../assets/images/logo/calten.png";
+import { useSearchParams } from "react-router-dom";
 
 function SuccessPage() {
+  const [queryParams] = useSearchParams();
+  const name = queryParams.get('name');
+  const email = queryParams.get('email') || 'tu correo';
 
   return (
     <>
       <div className="landing-page">
         <br />
         <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          Listo
+          Pago aceptado
         </Typography>
         <Typography variant="h5" style={{ letterSpacing: "1px", width: "50%" }}>
-         Gracias por tu participación
+          Gracias por tu participación {name}
         </Typography>
         <div className="container">
           <img style={{ width: "80%" }} src={caltenLogo} alt="Logo" />
         </div>
         <div className="container">
         <Typography variant="h5" style={{ letterSpacing: "1px" }}>
-          Tu pago se procesó correctamente
+          Pronto recibiras un correo de confirmación a {email}
           <List>
           <ListItem >
             <ListItemButton href='/'>

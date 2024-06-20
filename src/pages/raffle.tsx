@@ -5,15 +5,23 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import CaltenLinks from "../components/CaltenLinks";
 import caltenLogo from "../assets/images/logo/calten.png";
+import { useSearchParams } from "react-router-dom";
 
 function RafflePage() {
-  const [ticketCount, setTicketCount] = useState(1); // Default to 1 ticket
+  const [queryParams] = useSearchParams();
+  const tickets = queryParams.get('tickets') || 1;
+  const [ticketCount, setTicketCount] = useState(tickets); // Default to 1 ticket
   const ticketPrice = 50; // Assuming the price is always $50 MXN
+  const name = queryParams.get('name');
+  const email = queryParams.get('email');
+  const error = queryParams.get('error');
+  const message = 'Ayudanos a mejorar nuestra experiencia de pago';
+  const displayMessage = error || message;
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
+      name: name || "",
+      email: email || "",
     },
     validationSchema: Yup.object({
       name: Yup.string()
@@ -48,7 +56,7 @@ function RafflePage() {
           Participa en la rifa de Calten
         </Typography>
         <Typography variant="h5" style={{ letterSpacing: "1px" }}>
-          Ayudanos a mejorar nuestra experiencia de pago
+          {displayMessage}
         </Typography>
         <div className="container">
           <img style={{ width: "80%" }} src={caltenLogo} alt="Logo" />
