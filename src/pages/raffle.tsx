@@ -9,7 +9,7 @@ import { useSearchParams } from "react-router-dom";
 
 function RafflePage() {
   const [queryParams] = useSearchParams();
-  const tickets = queryParams.get('tickets') || 1;
+  const tickets = Number(queryParams.get('tickets')) || 1;
   const [ticketCount, setTicketCount] = useState(tickets); // Default to 1 ticket
   const ticketPrice = 50; // Assuming the price is always $50 MXN
   const name = queryParams.get('name');
