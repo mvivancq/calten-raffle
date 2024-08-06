@@ -45,7 +45,7 @@ function RafflePage() {
     }
     const resultDetails = await apiRaffle.requestPaymentReference(formedData);
     console.log(resultDetails);
-    window.location.href = `${import.meta.env.VITE_CALTEN_API}/${resultDetails}`
+    window.location.href = `${import.meta.env.VITE_CALTEN_UI}/${resultDetails}`
   }
 
   const plural = ticketCount > 1
