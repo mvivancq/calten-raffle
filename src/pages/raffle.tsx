@@ -51,8 +51,8 @@ function RafflePage() {
     console.log(resultDetails);
     if(!resultDetails){
       toast.error('ERROR: Ocurrió un error al general el cobro, vuelve a intentarlo');
-      setPaymentEnabled(true);
     }
+    setPaymentEnabled(true);
     window.location.href = `${import.meta.env.VITE_CALTEN_UI}/${resultDetails}`
   }
 
