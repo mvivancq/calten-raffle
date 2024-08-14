@@ -47,13 +47,14 @@ function RafflePage() {
       "numberOfTickets": ticketCount,
     }
     setPaymentEnabled(false);
-    const resultDetails = await apiRaffle.requestPaymentReference(formedData);
-    console.log(resultDetails);
-    if(!resultDetails){
-      toast.error('ERROR: Ocurrió un error al general el cobro, vuelve a intentarlo');
+    try{
+      const resultDetails = await apiRaffle.requestPaymentReference(formedData);
+      setPaymentEnabled(true);
+      window.location.href = `${import.meta.env.VITE_CALTEN_UI}/${resultDetails}`
+    }catch {
+      setPaymentEnabled(true);
+      toast.error('ERROR: Ocurrió un error al generar el cobro, vuelve a intentarlo');
     }
-    setPaymentEnabled(true);
-    window.location.href = `${import.meta.env.VITE_CALTEN_UI}/${resultDetails}`
   }
 
   const plural = ticketCount > 1
