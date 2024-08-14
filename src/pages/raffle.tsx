@@ -6,10 +6,13 @@ import * as Yup from 'yup';
 import CaltenLinks from "../components/CaltenLinks";
 import caltenLogo from "../assets/images/logo/calten.png";
 import { useSearchParams } from "react-router-dom";
+import { MoonLoader } from "react-spinners"; 
+import toast from "react-hot-toast";
 
 function RafflePage() {
   const [queryParams] = useSearchParams();
   const tickets = Number(queryParams.get('tickets')) || 1;
+  const [payementEnabled, setPaymentEnabled] = useState(true);
   const [ticketCount, setTicketCount] = useState(tickets); // Default to 1 ticket
   const ticketPrice = 50; // Assuming the price is always $50 MXN
   const name = queryParams.get('name');
@@ -43,8 +46,13 @@ function RafflePage() {
       "email": email,
       "numberOfTickets": ticketCount,
     }
+    setPaymentEnabled(false);
     const resultDetails = await apiRaffle.requestPaymentReference(formedData);
     console.log(resultDetails);
+    if(!resultDetails){
+      toast.error('ERROR: Ocurrió un error al general el cobro, vuelve a intentarlo');
+      setPaymentEnabled(true);
+    }
     window.location.href = `${import.meta.env.VITE_CALTEN_UI}/${resultDetails}`
   }
 
@@ -112,6 +120,8 @@ function RafflePage() {
           fullWidth
           type="submit"
           size="large"
+          disabled={!payementEnabled}
+          endIcon={<MoonLoader color="#5F5F5F" size={14} loading={!payementEnabled} speedMultiplier={0.65}/>}
         >
           Paga con Calten
         </Button>

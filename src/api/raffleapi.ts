@@ -15,7 +15,7 @@ class APIRaffle {
 
   constructor() {
     this.axiosInstance = axios.create({
-      baseURL: `${import.meta.env.VITE_CALTEN_API}/api`,
+      baseURL: `${import.meta.env.VITE_RAFFLE_API}/api`,
     });
   }
 
