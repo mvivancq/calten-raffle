@@ -1,6 +1,10 @@
 import { useState } from "react";
 import apiRaffle from "../api/raffleapi";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography, 
+  List, 
+  ListItem, 
+  ListItemIcon, 
+  ListItemText  } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import CaltenLinks from "../components/CaltenLinks";
@@ -8,6 +12,8 @@ import caltenLogo from "../assets/images/logo/calten.png";
 import { useSearchParams } from "react-router-dom";
 import { MoonLoader } from "react-spinners"; 
 import toast from "react-hot-toast";
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+
 
 function RafflePage() {
   const [queryParams] = useSearchParams();
@@ -20,6 +26,8 @@ function RafflePage() {
   const error = queryParams.get('error');
   const message = 'Ayudanos a mejorar nuestra experiencia de pago';
   const displayMessage = error || message;
+  const date = '15 de Octubre';
+  const time = '7:00 PM (Hora CDMX)';
 
   const formik = useFormik({
     initialValues: {
@@ -61,18 +69,55 @@ function RafflePage() {
   return (
     <>
       <div className="landing-page">
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          Participa en la rifa de Calten
-        </Typography>
-        <Typography variant="h5" style={{ letterSpacing: "1px" }}>
-          {displayMessage}
-        </Typography>
-        <div className="container">
-          <img style={{ width: "80%" }} src={caltenLogo} alt="Logo" />
+      <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img 
+            style={{ 
+              width: "80%", 
+              maxWidth: '250px', 
+              margin: '0px', 
+              transition: 'width 0.3s ease-in-out' 
+            }} 
+            src={caltenLogo} 
+            alt="Logo" 
+          />
         </div>
+        <div className="container" style={{ textAlign: 'center', marginTop: '20px' }}>
+          <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+            Participa en la rifa de Calten
+          </Typography>
+          <Typography variant="body1" style={{ letterSpacing: "1px", marginBottom: '6px' }}>
+          {displayMessage}
+          </Typography>
+
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                <ArrowCircleRightIcon />
+              </ListItemIcon>
+              <ListItemText primary="Premio: Apple AirPods" />
+            </ListItem>
+
+            <ListItem>
+              <ListItemIcon>
+                <ArrowCircleRightIcon />
+              </ListItemIcon>
+              <ListItemText primary={`Sorteo: ${date} a las ${time}`} />
+            </ListItem>
+
+            <ListItem>
+              <ListItemIcon>
+                <ArrowCircleRightIcon />
+              </ListItemIcon>
+              <ListItemText primary={`Costo del boleto: ${ticketPrice} MXN`} />
+            </ListItem>
+
+
+          </List>
+        </div>
+
         <p>
-          Costo del boleto: <strong>${ticketPrice} MXN</strong> - Quiero comprar
-          <select
+        <Typography variant="body1" style={{ letterSpacing: "1px", marginBottom: '6px' }}>
+        <strong>Quiero comprar<select
             value={ticketCount}
             onChange={(e) => setTicketCount(Number(e.target.value))}
             style={{ marginLeft: "10px", marginRight: "10px" }}
@@ -83,10 +128,14 @@ function RafflePage() {
               </option>
             ))}
           </select>
-          boleto{plural ? 's' : ''}
+          boleto{plural ? 's' : ''} </strong> 
           <br></br>
+          </Typography>
+          
+          
         </p>
-        <form onSubmit={formik.handleSubmit} style={{ marginLeft: "10px", marginRight: "10px" }}>
+        <div className="container" style={{ display: 'flex', flexDirection: 'column'}}>   
+        <form onSubmit={formik.handleSubmit} style={{ marginLeft: "30px", marginRight: "30px" }}>
         <TextField
           id="name"
           name="name"
@@ -128,6 +177,7 @@ function RafflePage() {
         </Button>
         </form>
       <CaltenLinks />
+      </div>
       </div>
     </>
   );
