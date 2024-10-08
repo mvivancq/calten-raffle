@@ -26,7 +26,7 @@ function SuccessPage() {
         <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <img 
             style={{ 
-              width: "80%", 
+              width: "85%", 
               maxWidth: '250px', 
               margin: '0px', 
               transition: 'width 0.3s ease-in-out' 
@@ -37,7 +37,7 @@ function SuccessPage() {
         </div>
         
         <div className="container" style={{ textAlign: 'center', marginTop: '20px' }}>
-          <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+          <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
             Gracias por tu participación {name}
           </Typography>
           <Typography variant="body1" style={{ letterSpacing: "1px", marginBottom: '6px' }}>
@@ -51,21 +51,18 @@ function SuccessPage() {
               </ListItemIcon>
               <ListItemText primary="Premio: Apple AirPods" />
             </ListItem>
-
             <ListItem>
               <ListItemIcon>
                 <CheckCircleIcon />
               </ListItemIcon>
               <ListItemText primary={`Fecha de sorteo: ${date}`} />
             </ListItem>
-
             <ListItem>
               <ListItemIcon>
                 <CheckCircleIcon />
               </ListItemIcon>
               <ListItemText primary={`Hora del sorteo: ${time}`} />
             </ListItem>
-
             <ListItem>
               <ListItemIcon>
                 <CheckCircleIcon />
@@ -79,25 +76,24 @@ function SuccessPage() {
                 </>
               } />
             </ListItem>
-
             <ListItem>
               <ListItemIcon>
                 <CheckCircleIcon />
               </ListItemIcon>
-              <ListItemText primary={`Recibiras un correo de confirmacion a ${email}`} />
+              <ListItemText primary={`Recibirás un correo de confirmación a ${email}`} />
             </ListItem>
           </List>
         </div>
 
         {/* Buttons Container */}
-        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '20px' }}>
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px'}}>
           <Button
-            sx={{ textTransform: "none", fontSize: "16px", width: '100%', padding: '12px' }}
+            sx={{ textTransform: "none", fontSize: "16px", width: '100%', padding: '12px',  paddingLeft: '50px', paddingRight: '50px'  }}
             variant="contained"
             href='https://forms.gle/iU8bqKBETd5rtr2FA'
             size="large"
           >
-            Ayúdanos a mejorar con esta breve encuesta
+            Contesta la encuesta
           </Button>
           <Button
             sx={{ textTransform: "none", fontSize: "16px", width: '100%', padding: '12px' }}
