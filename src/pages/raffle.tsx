@@ -1,13 +1,20 @@
 import { useState } from "react";
 import apiRaffle from "../api/raffleapi";
-import { Button, TextField, Typography } from "@mui/material";
+import { Button, TextField, Typography, 
+  List, 
+  ListItem, 
+  ListItemIcon, 
+  ListItemText  } from "@mui/material";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 import CaltenLinks from "../components/CaltenLinks";
 import caltenLogo from "../assets/images/logo/calten.png";
+import codiLogo from "../assets/images/logo/codi.png";
 import { useSearchParams } from "react-router-dom";
 import { MoonLoader } from "react-spinners"; 
 import toast from "react-hot-toast";
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+
 
 function RafflePage() {
   const [queryParams] = useSearchParams();
@@ -18,8 +25,10 @@ function RafflePage() {
   const name = queryParams.get('name');
   const email = queryParams.get('email');
   const error = queryParams.get('error');
-  const message = 'Ayudanos a mejorar nuestra experiencia de pago';
+  const message = 'Ayúdanos a mejorar nuestra experiencia de pago';
   const displayMessage = error || message;
+  const date = '15 de Octubre';
+  const time = '7:00 PM (CDMX)';
 
   const formik = useFormik({
     initialValues: {
@@ -61,18 +70,64 @@ function RafflePage() {
   return (
     <>
       <div className="landing-page">
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          Participa en la rifa de Calten
-        </Typography>
-        <Typography variant="h5" style={{ letterSpacing: "1px" }}>
-          {displayMessage}
-        </Typography>
-        <div className="container">
-          <img style={{ width: "80%" }} src={caltenLogo} alt="Logo" />
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img 
+            style={{ 
+              width: "85%", 
+              maxWidth: '250px', 
+              margin: '0px', 
+              transition: 'width 0.3s ease-in-out' 
+            }} 
+            src={caltenLogo} 
+            alt="Logo" 
+          />
         </div>
+
+        <div className="container" style={{ textAlign: 'center', marginTop: '20px' }}>
+          <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
+            Participa en la rifa de Calten
+          </Typography>
+          <Typography 
+            variant="body1" 
+            style={{ 
+              letterSpacing: "1px", 
+              whiteSpace: 'nowrap', 
+              overflow: 'hidden', 
+              textOverflow: 'ellipsis', 
+              fontSize: 'clamp(14px, 2vw, 16px)' 
+            }}
+          >
+            {displayMessage}
+          </Typography>
+
+                
+        </div>
+
+        <div className="list-container">
+        <List >
+            <ListItem>
+              <ListItemIcon style={{ minWidth: 30}}>
+                <ArrowCircleRightIcon />
+              </ListItemIcon>
+              <ListItemText primary="Premio: Apple AirPods"  />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon style={{ minWidth: 30}}>
+                <ArrowCircleRightIcon />
+              </ListItemIcon>
+              <ListItemText primary={`Sorteo: ${date} - ${time}`} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon style={{ minWidth: 30}}>
+                <ArrowCircleRightIcon />
+              </ListItemIcon>
+              <ListItemText primary={`Costo del boleto: ${ticketPrice} MXN`} />
+            </ListItem>
+          </List>
+          </div>
         <p>
-          Costo del boleto: <strong>${ticketPrice} MXN</strong> - Quiero comprar
-          <select
+        <Typography variant="h5" style={{ letterSpacing: "1px"}}>
+        <strong>Quiero comprar<select
             value={ticketCount}
             onChange={(e) => setTicketCount(Number(e.target.value))}
             style={{ marginLeft: "10px", marginRight: "10px" }}
@@ -83,8 +138,9 @@ function RafflePage() {
               </option>
             ))}
           </select>
-          boleto{plural ? 's' : ''}
+          boleto{plural ? 's' : ''} </strong> 
           <br></br>
+          </Typography>
         </p>
         <form onSubmit={formik.handleSubmit} style={{ marginLeft: "10px", marginRight: "10px" }}>
         <TextField
@@ -116,18 +172,35 @@ function RafflePage() {
           helperText={formik.touched.email && formik.errors.email} // Add this line
         />
         <Button
-          sx={{ mt: 3, mb: 3, textTransform: "none", fontSize: "18px" }}
+          sx={{ 
+            mt: 3, 
+            mb: 3, 
+            textTransform: "none", 
+            fontSize: "18px", 
+            fontWeight: "bold"
+          }}
           variant="contained"
           fullWidth
           type="submit"
           size="large"
           disabled={!payementEnabled}
-          endIcon={<MoonLoader color="#5F5F5F" size={14} loading={!payementEnabled} speedMultiplier={0.65}/>}
+          endIcon={
+            <>
+              <img 
+                src={codiLogo}
+                alt="CoDi Logo" 
+                style={{ width: '32px', height: '32px' }}
+              />
+              <MoonLoader color="#5F5F5F" size={14} loading={!payementEnabled} speedMultiplier={0.65}/>
+            </>
+          }
         >
-          Paga con Calten
+          Paga con
         </Button>
-        </form>
+                </form>
       <CaltenLinks />
+
+      
       </div>
     </>
   );

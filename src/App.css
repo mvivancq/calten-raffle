@@ -11,6 +11,12 @@
 
 }
 
+.list-container {
+  text-align: left;
+  width: 100%;
+  max-width: 590px;
+}
+
 .cool-button {
   background-color: rgb(121, 0, 255); /* Main button color */
   color: white;
