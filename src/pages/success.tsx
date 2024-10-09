@@ -17,80 +17,94 @@ function SuccessPage() {
   const name = queryParams.get('name');
   const email = queryParams.get('email') || 'tu correo';
   const date = '15 de Octubre';
-  const time = '7 pm (Hora CDMX)';
+  const time = '7:00 PM (Hora CDMX)';
 
   return (
     <>
       <div className="landing-page">
-        <div className="container">
-          <img style={{ width: "60%", margin: '0px' }} src={caltenLogo} alt="Logo" />
+        {/* Logo Container */}
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img 
+            style={{ 
+              width: "85%", 
+              maxWidth: '250px', 
+              margin: '0px', 
+              transition: 'width 0.3s ease-in-out' 
+            }} 
+            src={caltenLogo} 
+            alt="Logo" 
+          />
         </div>
-        <br/>
-        <div className="container" >
-          <Typography variant="h4" sx={{ fontWeight: "bold", mb: 3 }}>
+        
+        <div className="container" style={{ textAlign: 'center', marginTop: '20px' }}>
+          <Typography variant="h5" sx={{ fontWeight: "bold", mb: 2 }}>
             Gracias por tu participación {name}
           </Typography>
-          <Typography variant="h5" style={{ letterSpacing: "1px" }}>
-            Información importante acerca de la Rifa
-            <List>
-              <ListItem >
-                <ListItemIcon>
-                  <CheckCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Premio: Apple Airpods" />
-              </ListItem>
-              <ListItem >
-                <ListItemIcon>
-                  <CheckCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary={`Fecha de sorteo: ${date}`} />
-              </ListItem>
-              <ListItem >
-                <ListItemIcon>
-                  <CheckCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary={`Hora del sorteo: ${time}`} />
-              </ListItem>
-              <ListItem >
-                <ListItemIcon>
-                  <CheckCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary={
-                  <>
-                    Medio: Live desde nuestro Instagram {} 
-                    <Link href="https://www.instagram.com/calten.mx" target="_blank" rel="noopener">
-                     @calten.mx
-                    </Link>
-                  </>
-                } />
-              </ListItem>
-              <ListItem >
-                <ListItemIcon>
-                  <CheckCircleIcon />
-                </ListItemIcon>
-                <ListItemText primary={`Recibiras un correo de confirmacion a ${email}`} />
-              </ListItem>
-            </List>
+          <Typography variant="body1" style={{ letterSpacing: "1px", marginBottom: '6px' }}>
+            Información importante sobre el sorteo:
           </Typography>
+
+          <List>
+            <ListItem>
+              <ListItemIcon>
+                <CheckCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Premio: Apple AirPods" />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CheckCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary={`Fecha de sorteo: ${date}`} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CheckCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary={`Hora del sorteo: ${time}`} />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CheckCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary={
+                <>
+                  Anuncio del ganador: Instagram Live en {} 
+                  <Link href="https://www.instagram.com/calten.mx" target="_blank" rel="noopener">
+                    @calten.mx
+                  </Link>
+                </>
+              } />
+            </ListItem>
+            <ListItem>
+              <ListItemIcon>
+                <CheckCircleIcon />
+              </ListItemIcon>
+              <ListItemText primary={`Recibirás un correo de confirmación a ${email}`} />
+            </ListItem>
+          </List>
         </div>
-        <div className="container">
+
+        {/* Buttons Container */}
+        <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '10px'}}>
           <Button
-            sx={{ mt: 4, textTransform: "none", fontSize: "18px", width:'100%' }}
+            sx={{ textTransform: "none", fontSize: "16px", width: '100%', padding: '12px',  paddingLeft: '50px', paddingRight: '50px'  }}
             variant="contained"
             href='https://forms.gle/iU8bqKBETd5rtr2FA'
             size="large"
           >
-            Ayúdanos a mejorar con esta breve encuesta
+            Contesta la encuesta
           </Button>
           <Button
-            sx={{ mt: 4, mb: 4, textTransform: "none", fontSize: "18px", width:'100%' }}
+            sx={{ textTransform: "none", fontSize: "16px", width: '100%', padding: '12px' }}
             variant="outlined"
             href='/'
             size="large"
           >
-            Regresar al inicio
+            Regresa al inicio
           </Button>
         </div>
+<br></br>
         <CaltenLinks />
       </div>
     </>
