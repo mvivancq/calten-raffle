@@ -4,7 +4,6 @@ import {
   Typography, 
   List, 
   ListItem, 
-  ListItemButton, 
   ListItemIcon, 
   ListItemText 
 } from "@mui/material";
@@ -17,40 +16,44 @@ function FailurePage() {
     <>
       <div className="landing-page">
         <br />
-        <Typography variant="h4" sx={{ fontWeight: "bold" }}>
-          Error
-        </Typography>
-        <Typography variant="h5" style={{ letterSpacing: "1px", width: "50%" }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <img 
+            style={{ 
+              width: "80%", 
+              maxWidth: '250px', 
+              margin: '0px', 
+              transition: 'width 0.3s ease-in-out' 
+            }} 
+            src={caltenLogo} 
+            alt="Logo" 
+          />
+        </div>
+        <br/>
+        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
           Tu pago no pudo ser procesado
         </Typography>
+        <br/>
         <div className="container">
-          <img style={{ width: "80%" }} src={caltenLogo} alt="Logo" />
-        </div>
-        <div className="container">
-        <Typography variant="h5" style={{ letterSpacing: "1px" }}>
+        <Typography variant="body1" style={{ letterSpacing: "1px" }}>
           Tu pago presentó un error al ser procesado, los errores mas comunes son:
           <List>
           <ListItem >
-            <ListItemButton>
               <ListItemIcon>
                 <ErrorIcon />
               </ListItemIcon>
               <ListItemText primary="Tu celular no esta registrado en CoDi" />
-            </ListItemButton>
           </ListItem>
           <ListItem >
-            <ListItemButton>
               <ListItemIcon>
                 <ErrorIcon />
               </ListItemIcon>
               <ListItemText primary="El mensaje de pago no fue aceptado" />
-            </ListItemButton>
           </ListItem>
           </List>
         </Typography>
         </div>
         <Button
-          sx={{ mt: 6, mb: 6, textTransform: "none", fontSize: "18px" }}
+          sx={{ mt: 2, mb: 6, textTransform: "none", fontSize: "18px" }}
           variant="contained"
           href='/'
           size="large"
