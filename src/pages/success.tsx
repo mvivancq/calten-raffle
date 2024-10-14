@@ -16,7 +16,7 @@ function SuccessPage() {
   const [queryParams] = useSearchParams();
   const name = queryParams.get('name');
   const email = queryParams.get('email') || 'tu correo';
-  const date = '15 de Octubre';
+  const date = '31 de Octubre';
   const time = '7:00 PM (Hora CDMX)';
 
   return (
