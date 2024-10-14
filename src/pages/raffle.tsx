@@ -21,13 +21,13 @@ function RafflePage() {
   const tickets = Number(queryParams.get('tickets')) || 1;
   const [payementEnabled, setPaymentEnabled] = useState(true);
   const [ticketCount, setTicketCount] = useState(tickets); // Default to 1 ticket
-  const ticketPrice = 50; // Assuming the price is always $50 MXN
+  const ticketPrice = 20; // Assuming the price is always $50 MXN
   const name = queryParams.get('name');
   const email = queryParams.get('email');
   const error = queryParams.get('error');
   const message = 'Ayúdanos a mejorar nuestra experiencia de pago';
   const displayMessage = error || message;
-  const date = '15 de Octubre';
+  const date = '31 de Octubre';
   const time = '7:00 PM (CDMX)';
 
   const formik = useFormik({
