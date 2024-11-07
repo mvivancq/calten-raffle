@@ -11,7 +11,6 @@ import CaltenLinks from "../components/CaltenLinks";
 import caltenLogo from "../assets/images/logo/calten.png";
 import codiLogo from "../assets/images/logo/codi.png";
 import { useSearchParams } from "react-router-dom";
-import { MoonLoader } from "react-spinners"; 
 import toast from "react-hot-toast";
 import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 
@@ -191,7 +190,6 @@ function RafflePage() {
                 alt="CoDi Logo" 
                 style={{ width: '32px', height: '32px' }}
               />
-              <MoonLoader color="#5F5F5F" size={14} loading={!payementEnabled} speedMultiplier={0.65}/>
             </>
           }
         >
